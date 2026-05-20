@@ -76,7 +76,7 @@ The comprehensive technical reference is the **Pyde Book**:
 
 More repositories will go public as the implementation stabilizes —
 the language reference (Otigen book), the execution-layer engine
-workspace, the otic compiler, the developer toolchain (pyde-dev),
+workspace, the otic compiler, the developer toolchain (wright),
 the Rust and WASM SDKs, the block explorer, and the PIP (Pyde
 Improvement Proposal) registry.
 

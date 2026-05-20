@@ -96,7 +96,7 @@ The pyde-net org is a polyrepo. Active repos:
 | [`engine`](https://github.com/pyde-net/engine) | Execution layer (PVM, AOT, state, account, tx) |
 | [`pyde-crypto`](https://github.com/pyde-net/pyde-crypto) | Post-quantum cryptography crate |
 | [`otic`](https://github.com/pyde-net/otic) | Otigen smart-contract compiler |
-| [`dev`](https://github.com/pyde-net/dev) | `pyde-dev` developer CLI |
+| [`dev`](https://github.com/pyde-net/dev) | `wright` developer CLI |
 | [`pyde-rust-sdk`](https://github.com/pyde-net/pyde-rust-sdk) | Rust client SDK |
 | [`pyde-ts-sdk`](https://github.com/pyde-net/pyde-ts-sdk) | TypeScript client SDK |
 | [`crypto-wasm`](https://github.com/pyde-net/crypto-wasm) | WASM bindings for `pyde-crypto` |
