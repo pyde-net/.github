@@ -9,7 +9,7 @@ overrides it with a more specific `SECURITY.md`.
 
 **Do not open a public issue for security vulnerabilities.**
 
-Email: **`security@pyde.network`** *(or until that's live: `<email>`
+Email: **`security@pyde.network`** *(or until that's live: `info@pyde.network`
 — project contact via README)*
 
 Please include:
