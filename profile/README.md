@@ -103,8 +103,8 @@ distinction matters.
 
 ## Contact
 
-- 📧 **Email:** `<email>`
-- 🌐 **Website:** `<website>`
+- 📧 **Email:** `info@pyde.network`
+- 🌐 **Website:** <https://pyde.network>
 
 (Additional channels will be announced as the project moves from
 pre-mainnet engineering toward public testnet.)

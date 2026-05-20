@@ -74,7 +74,7 @@ public spaces.
 
 Instances of abusive, harassing, or otherwise unacceptable behaviour
 may be reported to the project maintainers at **`conduct@pyde.network`**
-*(or the project email listed in the README until that's live)*. All
+*(or `info@pyde.network`)*. All
 complaints will be reviewed and investigated promptly and fairly.
 
 All maintainers are obligated to respect the privacy and security of
