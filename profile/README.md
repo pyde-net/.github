@@ -101,10 +101,24 @@ distinction matters.
 
 ---
 
+## Community
+
+- 📜 [**Contributing**](https://github.com/pyde-net/.github/blob/main/CONTRIBUTING.md) — how to propose changes, PIP process, engineering standards
+- 🔒 [**Security policy**](https://github.com/pyde-net/.github/blob/main/SECURITY.md) — vulnerability disclosure, scope, safe harbor
+- 🤝 [**Code of Conduct**](https://github.com/pyde-net/.github/blob/main/CODE_OF_CONDUCT.md) — community standards (Contributor Covenant 2.1)
+- 📋 [**Pyde Improvement Proposals (PIPs)**](https://github.com/pyde-net/pips) — protocol-affecting changes go here
+
+These apply org-wide. Individual repos may publish more specific
+versions where the domain warrants it (e.g., a crate-specific security
+policy on `pyde-crypto` once the audit kicks off).
+
+---
+
 ## Contact
 
 - 📧 **Email:** `info@pyde.network`
 - 🌐 **Website:** <https://pyde.network>
+- 🔐 **Security disclosures:** `security@pyde.network` (see [SECURITY.md](https://github.com/pyde-net/.github/blob/main/SECURITY.md))
 
 (Additional channels will be announced as the project moves from
 pre-mainnet engineering toward public testnet.)
