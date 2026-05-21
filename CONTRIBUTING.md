@@ -18,7 +18,7 @@ If your change affects:
 - Gas costs or fee distribution
 - Cryptographic primitives
 - State layout or commitment scheme
-- The PVM ISA
+- The WASM host function ABI
 - Validator / staking / slashing logic
 
 …then it's a **protocol change** and requires a **PIP (Pyde Improvement
@@ -32,7 +32,7 @@ The short version:
 1. Open a PR against `pyde-net/pips` adding `pip-NNNN-short-title.md`
 2. Iterate through Draft → Review → Last Call → Accepted (or Rejected)
 3. After acceptance, the reference implementation PR lands in the
-   relevant repo (`engine`, `otic`, `pyde-crypto`, etc.) referencing
+   relevant repo (`engine`, `otigen`, `pyde-crypto`, etc.) referencing
    the PIP number
 4. Validators upgrade voluntarily at the activation slot
 
@@ -93,14 +93,14 @@ The pyde-net org is a polyrepo. Active repos:
 | Repo | Purpose |
 |---|---|
 | [`pyde-book`](https://github.com/pyde-net/pyde-book) | Technical reference |
-| [`engine`](https://github.com/pyde-net/engine) | Execution layer (PVM, AOT, state, account, tx) |
+| [`engine`](https://github.com/pyde-net/engine) | Execution layer (WASM via wasmtime), state, accounts, transactions, consensus |
 | [`pyde-crypto`](https://github.com/pyde-net/pyde-crypto) | Post-quantum cryptography crate |
-| [`otic`](https://github.com/pyde-net/otic) | Otigen smart-contract compiler |
-| [`dev`](https://github.com/pyde-net/dev) | `wright` developer CLI |
+| [`otic`](https://github.com/pyde-net/otic) | Archived (pre-WASM-pivot): was the Otigen-language compiler |
+| [`wright`](https://github.com/pyde-net/wright) | Archived (pre-WASM-pivot): was the pre-WASM-pivot developer toolchain. New WASM-era dev toolchain is `otigen` (separate repo, in development) |
 | [`pyde-rust-sdk`](https://github.com/pyde-net/pyde-rust-sdk) | Rust client SDK |
 | [`pyde-ts-sdk`](https://github.com/pyde-net/pyde-ts-sdk) | TypeScript client SDK |
 | [`crypto-wasm`](https://github.com/pyde-net/crypto-wasm) | WASM bindings for `pyde-crypto` |
-| [`otigen-book`](https://github.com/pyde-net/otigen-book) | Otigen language tutorial |
+| [`otigen-book`](https://github.com/pyde-net/otigen-book) | Historical artifact: original Otigen language reference |
 | [`pips`](https://github.com/pyde-net/pips) | Pyde Improvement Proposals |
 | [`explorer`](https://github.com/pyde-net/explorer) | Block explorer |
 | [`website`](https://github.com/pyde-net/website) | Marketing site (pyde.network) |

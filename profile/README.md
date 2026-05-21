@@ -28,37 +28,45 @@ today:
   within the active committee; single-tier 10,000 PYDE stake
   minimum, uniform-random committee selection per epoch.
 
-The execution layer is a register-based virtual machine (PVM) with a
-hybrid parallel scheduler combining static access lists with
-Block-STM speculation. Smart contracts are written in **Otigen**, a
-purpose-built language with reentrancy guards, checked arithmetic,
-and compile-time access-list inference.
+The execution layer is **WebAssembly** via wasmtime, with Cranelift
+ahead-of-time compilation and a hybrid parallel scheduler combining
+static access lists with Block-STM speculation. Smart contracts can
+be authored in **Rust, AssemblyScript, Go (TinyGo), or C/C++** —
+whatever language fits the team — and bundled by the **`otigen`**
+developer toolchain, which handles language detection, build
+invocation, state binding generation, and deploy submission.
 
 ---
 
 ## Honest status
 
-Pyde is **pre-mainnet**. The architecture design is complete; the
-execution layer and cryptography crates are functional; the
-consensus layer is being rebuilt design-first following a **May 2026
-pivot** from an in-house HotStuff variant (whose persistent wedges
-and stalls at 400ms slot timing motivated a clean rebuild) to
-Mysticeti-style DAG consensus.
+Pyde is **pre-mainnet**. Architecture design is complete. The protocol
+has gone through two clean pivots, both honest, both for the right
+reasons:
 
-| Component                         | State                                          |
-| --------------------------------- | ---------------------------------------------- |
-| Architecture design               | Complete                                       |
-| PVM + Otigen execution            | Functional, extensions in flight               |
-| State layer (JMT, hybrid hashing) | In place, hybrid hashing wiring in flight      |
-| Mysticeti DAG consensus           | Rebuild in progress post-pivot                 |
-| Threshold cryptography (PQ)       | Research-grade — bleeding-edge                 |
-| Network protocol                  | Existing; libp2p + QUIC migration in flight    |
-| Performance harness               | Not yet built (mandatory before any TPS claim) |
+- **Consensus pivot** — from an in-house HotStuff variant (whose
+  persistent wedges and stalls at 400ms slot timing motivated a clean
+  rebuild) to Mysticeti-style DAG consensus.
+- **Execution pivot** — from a custom virtual machine and a
+  domain-specific language (Otigen) to WebAssembly via wasmtime. The
+  Otigen name lives on as the developer toolchain. The full story is
+  in [pyde-book/src/preface/pivot.md](https://github.com/pyde-net/pyde-book/blob/main/src/preface/pivot.md).
 
-Mainnet ships when the implementation is complete, audited (five
-specialist external audits), and validated by an incentivized
-testnet. **No public schedule.** No external TPS claim without
-harness evidence — the "claim 1/3 of measured peak" discipline.
+| Component                                | State                                            |
+| ---------------------------------------- | ------------------------------------------------ |
+| Architecture design                      | Complete                                         |
+| WASM execution layer (wasmtime + Cranelift) | Foundation in place, integration in flight      |
+| State layer (JMT, dual-hash Blake3+Poseidon2) | In place, dual-hash wiring in flight        |
+| Mysticeti DAG consensus                  | Rebuild in progress post-pivot                   |
+| Threshold cryptography (PQ)              | Research-grade — bleeding-edge                   |
+| Network protocol                         | Existing; libp2p + QUIC migration in flight      |
+| Otigen developer toolchain (WASM-era)    | Specification in flight, scaffold to follow      |
+| Performance harness                      | Not yet built (mandatory before any TPS claim)   |
+
+Mainnet ships when the implementation is complete, audited, and
+validated by an incentivized testnet. **No public schedule.** No
+external TPS claim without harness evidence — the "claim 1/3 of
+measured peak" discipline.
 
 ---
 
@@ -75,19 +83,23 @@ The comprehensive technical reference is the **Pyde Book**:
   harness.
 
 More repositories will go public as the implementation stabilizes —
-the language reference (Otigen book), the execution-layer engine
-workspace, the otic compiler, the developer toolchain (wright),
-the Rust and WASM SDKs, the block explorer, and the PIP (Pyde
-Improvement Proposal) registry.
+the execution-layer engine workspace, the `otigen` developer
+toolchain (WASM-era), the Rust and TypeScript SDKs, the block
+explorer, and the PIP (Pyde Improvement Proposal) registry. The
+pre-pivot `otic` compiler and `wright` toolchain repositories remain
+public as archived historical artifacts; the original Otigen
+language book is preserved with a pivot preface.
 
 ---
 
 ## Who's building this
 
-Pyde is built by **zarah**, a solo founder making the technical
-choices and shipping the work. The May 2026 pivot from HotStuff to
-Mysticeti DAG consensus reflects an explicit preference for designing
-from a clean foundation over patching accumulated technical debt.
+Pyde is built by **zarah**, making the technical choices and shipping
+the work. The consensus pivot from HotStuff to Mysticeti DAG and the
+execution pivot from a custom VM to WebAssembly both reflect an
+explicit preference for designing from a clean foundation over
+patching accumulated technical debt — and for killing darlings
+honestly when the evidence says they should be killed.
 
 Engineering rigor is the project's discipline. Every claim in the
 book is grounded in either code that's running or an explicit "this

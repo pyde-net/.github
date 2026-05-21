@@ -30,8 +30,8 @@ In scope:
 
 - All public code in `pyde-net` org repos
 - Cryptographic implementations in [`pyde-crypto`](https://github.com/pyde-net/pyde-crypto)
-- The PVM + AOT compiler in [`engine`](https://github.com/pyde-net/engine)
-- The Otigen compiler in [`otic`](https://github.com/pyde-net/otic)
+- The WASM execution layer in [`engine`](https://github.com/pyde-net/engine)
+- The retired Otigen compiler in [`otic`](https://github.com/pyde-net/otic)
 - Wire-format / consensus / mempool design issues
 - Logic bugs in `pyde-book` companion specs that, if implemented as
   documented, would create a vulnerability
@@ -93,8 +93,8 @@ priority consideration for retroactive recognition.
 ## What pre-mainnet status means
 
 Pyde is pre-launch. The codebase is being prepared for external audit
-across five specialist tracks (consensus, PVM/execution, cryptography,
-networking, otic compiler) per
+across five specialist tracks (consensus, WASM execution layer, cryptography,
+networking, otigen toolchain) per
 [`pyde-book` Chapter 19](https://github.com/pyde-net/pyde-book/blob/main/src/chapters/19-launch-strategy.md).
 Vulnerabilities found in the pre-audit code are valuable input to the
 audit, not a sign the audit has failed. We welcome them.
