@@ -94,7 +94,7 @@ The pyde-net org is a polyrepo. Active repos:
 | [`pyde-book`](https://github.com/pyde-net/pyde-book) | Technical reference (book + companion specs) |
 | `engine` | Post-pivot WASM execution layer (state, accounts, transactions, consensus). To be re-cut as a fresh workspace; pre-pivot crates preserved in [`archive`](https://github.com/pyde-net/archive). |
 | [`pyde-crypto`](https://github.com/pyde-net/pyde-crypto) | Post-quantum cryptography crate (standalone polyrepo) |
-| `otigen` | Post-pivot developer toolchain (WASM-era; see [`pyde-book` Chapter 5](https://github.com/pyde-net/pyde-book/blob/main/src/chapters/05-otigen-toolchain.md)). To be bootstrapped. |
+| `otigen` | Post-pivot developer toolchain (WASM-era; see [`pyde-book` Chapter 5](https://book.pyde.network/chapters/05-otigen-toolchain)). To be bootstrapped. |
 | [`otic`](https://github.com/pyde-net/otic) | Retired (pre-WASM-pivot): the Otigen-language compiler. Preserved as historical artifact. |
 | [`wright`](https://github.com/pyde-net/wright) | Retired (pre-WASM-pivot): the pre-WASM-pivot developer toolchain. Replaced by `otigen` (forthcoming). |
 | [`pyde-rust-sdk`](https://github.com/pyde-net/pyde-rust-sdk) | Rust client SDK |

@@ -50,7 +50,7 @@ reasons:
 - **Execution pivot** — from a custom virtual machine and a
   domain-specific language (Otigen) to WebAssembly via wasmtime. The
   Otigen name lives on as the developer toolchain. The full story is
-  in [pyde-book/src/preface/pivot.md](https://github.com/pyde-net/pyde-book/blob/main/src/preface/pivot.md).
+  in [pyde-book/src/preface/pivot.md](https://book.pyde.network/preface/pivot).
 
 | Component                                | State                                            |
 | ---------------------------------------- | ------------------------------------------------ |
@@ -72,12 +72,14 @@ measured peak" discipline.
 
 ## Read
 
-The comprehensive technical reference is the **Pyde Book**:
+The comprehensive technical reference is the **Pyde Book** — read it
+at **[book.pyde.network](https://book.pyde.network)** (source lives at
+[`pyde-net/pyde-book`](https://github.com/pyde-net/pyde-book)):
 
-- 📘 **[pyde-book](https://github.com/pyde-net/pyde-book)** — full
-  architecture: 20 chapters covering the VM, state model, consensus,
-  cryptography, MEV protection, gas/fee model, account model,
-  networking, governance, security, and the phased launch plan.
+- 📘 **[Pyde Book](https://book.pyde.network)** — full architecture:
+  20 chapters covering the VM, state model, consensus, cryptography,
+  MEV protection, gas/fee model, account model, networking,
+  governance, security, and the phased launch plan.
   Includes companion specs for the threat model, slashing, validator
   lifecycle, state sync, chain halt + recovery, and the performance
   harness.

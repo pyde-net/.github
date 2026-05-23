@@ -85,7 +85,7 @@ that:
 ## Bug bounty
 
 A formal bug bounty program will launch with the incentivized testnet
-(Phase 9 of the [launch plan](https://github.com/pyde-net/pyde-book/blob/main/src/chapters/19-launch-strategy.md)).
+(Phase 9 of the [launch plan](https://book.pyde.network/chapters/19-launch-strategy)).
 Pre-mainnet vulnerability reports are not currently compensated
 financially but will be credited at the bounty program's launch, with
 priority consideration for retroactive recognition.
@@ -95,11 +95,11 @@ priority consideration for retroactive recognition.
 Pyde is pre-launch. The codebase is being prepared for external audit
 across five specialist tracks (consensus, WASM execution layer, cryptography,
 networking, otigen toolchain) per
-[`pyde-book` Chapter 19](https://github.com/pyde-net/pyde-book/blob/main/src/chapters/19-launch-strategy.md).
+[`pyde-book` Chapter 19](https://book.pyde.network/chapters/19-launch-strategy).
 Vulnerabilities found in the pre-audit code are valuable input to the
 audit, not a sign the audit has failed. We welcome them.
 
-Specifically, the multi-region performance harness build-out (specified in [`pyde-book` companion/PERFORMANCE_HARNESS.md](https://github.com/pyde-net/pyde-book/blob/main/src/companion/PERFORMANCE_HARNESS.md)) is the gating prerequisite before benchmark numbers are published — the work that surfaces it tends to surface vulnerability classes too.
+Specifically, the multi-region performance harness build-out (specified in [`pyde-book` companion/PERFORMANCE_HARNESS.md](https://book.pyde.network/companion/PERFORMANCE_HARNESS)) is the gating prerequisite before benchmark numbers are published — the work that surfaces it tends to surface vulnerability classes too.
 
 ## Cryptographic primitive caveats
 
