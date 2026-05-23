@@ -32,7 +32,8 @@ The short version:
 1. Open a PR against `pyde-net/pips` adding `pip-NNNN-short-title.md`
 2. Iterate through Draft → Review → Last Call → Accepted (or Rejected)
 3. After acceptance, the reference implementation PR lands in the
-   relevant repo (`engine`, `otigen`, `pyde-crypto`, etc.) referencing
+   relevant repo (`pyde-crypto`, the post-pivot engine workspace once
+   re-cut, the `otigen` toolchain once bootstrapped, etc.) referencing
    the PIP number
 4. Validators upgrade voluntarily at the activation slot
 
@@ -56,9 +57,7 @@ The bar for code merged into a `main` branch:
 - No new `unwrap()` / `expect()` on untrusted-input paths (validate +
   return a typed error instead)
 
-For changes that touch `pyde-crypto`, `engine/crates/aot`, or any
-security-relevant code path, expect a more careful review and possibly
-external audit gating before mainnet inclusion.
+For changes that touch `pyde-crypto`, the WASM execution layer, the consensus layer, the state layer, or any other security-relevant code path, expect a more careful review and possibly external audit gating before mainnet inclusion. (Post-pivot the WASM-execution / consensus / state crates live in a fresh engine workspace yet to be re-cut; the pre-pivot equivalents are in [`archive`](https://github.com/pyde-net/archive) for historical reference.)
 
 ## Commit messages
 
@@ -72,7 +71,7 @@ We use a light convention loosely based on Conventional Commits:
 
 Common types: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`,
 `perf`, `style`, `ci`. Scope is the module or area, e.g. `feat(crypto):`,
-`fix(pvm):`, `docs(book):`.
+`fix(consensus):`, `docs(book):`.
 
 **Do not include any AI / LLM attribution** (no `Co-Authored-By` for
 Claude / GPT / etc.) on commits or PRs. The work reads as the
@@ -92,11 +91,12 @@ The pyde-net org is a polyrepo. Active repos:
 
 | Repo | Purpose |
 |---|---|
-| [`pyde-book`](https://github.com/pyde-net/pyde-book) | Technical reference |
-| [`engine`](https://github.com/pyde-net/engine) | Execution layer (WASM via wasmtime), state, accounts, transactions, consensus |
-| [`pyde-crypto`](https://github.com/pyde-net/pyde-crypto) | Post-quantum cryptography crate |
-| [`otic`](https://github.com/pyde-net/otic) | Archived (pre-WASM-pivot): was the Otigen-language compiler |
-| [`wright`](https://github.com/pyde-net/wright) | Archived (pre-WASM-pivot): was the pre-WASM-pivot developer toolchain. New WASM-era dev toolchain is `otigen` (separate repo, in development) |
+| [`pyde-book`](https://github.com/pyde-net/pyde-book) | Technical reference (book + companion specs) |
+| `engine` | Post-pivot WASM execution layer (state, accounts, transactions, consensus). To be re-cut as a fresh workspace; pre-pivot crates preserved in [`archive`](https://github.com/pyde-net/archive). |
+| [`pyde-crypto`](https://github.com/pyde-net/pyde-crypto) | Post-quantum cryptography crate (standalone polyrepo) |
+| `otigen` | Post-pivot developer toolchain (WASM-era; see [`pyde-book` Chapter 5](https://github.com/pyde-net/pyde-book/blob/main/src/chapters/05-otigen-toolchain.md)). To be bootstrapped. |
+| [`otic`](https://github.com/pyde-net/otic) | Retired (pre-WASM-pivot): the Otigen-language compiler. Preserved as historical artifact. |
+| [`wright`](https://github.com/pyde-net/wright) | Retired (pre-WASM-pivot): the pre-WASM-pivot developer toolchain. Replaced by `otigen` (forthcoming). |
 | [`pyde-rust-sdk`](https://github.com/pyde-net/pyde-rust-sdk) | Rust client SDK |
 | [`pyde-ts-sdk`](https://github.com/pyde-net/pyde-ts-sdk) | TypeScript client SDK |
 | [`crypto-wasm`](https://github.com/pyde-net/crypto-wasm) | WASM bindings for `pyde-crypto` |

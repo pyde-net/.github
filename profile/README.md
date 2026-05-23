@@ -82,13 +82,16 @@ The comprehensive technical reference is the **Pyde Book**:
   lifecycle, state sync, chain halt + recovery, and the performance
   harness.
 
-More repositories will go public as the implementation stabilizes —
-the execution-layer engine workspace, the `otigen` developer
-toolchain (WASM-era), the Rust and TypeScript SDKs, the block
-explorer, and the PIP (Pyde Improvement Proposal) registry. The
-pre-pivot `otic` compiler and `wright` toolchain repositories remain
-public as archived historical artifacts; the original Otigen
-language book is preserved with a pivot preface.
+Most repositories in the [pyde-net](https://github.com/pyde-net) org
+are **private during pre-mainnet engineering** — access on request.
+Repositories will be opened publicly as the implementation stabilises:
+the post-pivot engine workspace (yet to be re-cut), the `otigen`
+developer toolchain (WASM-era, yet to be bootstrapped), the Rust and
+TypeScript SDKs, the block explorer, and the PIP registry. The
+pre-pivot `otic` compiler, `wright` toolchain, and the original
+Otigen language book are preserved as historical artifacts in the
+[`archive`](https://github.com/pyde-net/archive) repo and in their
+own retired-status repos.
 
 ---
 

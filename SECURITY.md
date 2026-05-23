@@ -30,8 +30,8 @@ In scope:
 
 - All public code in `pyde-net` org repos
 - Cryptographic implementations in [`pyde-crypto`](https://github.com/pyde-net/pyde-crypto)
-- The WASM execution layer in [`engine`](https://github.com/pyde-net/engine)
-- The retired Otigen compiler in [`otic`](https://github.com/pyde-net/otic)
+- The WASM execution layer (post-pivot, to be re-cut in a fresh engine workspace; the pre-pivot reference is in [`archive`](https://github.com/pyde-net/archive))
+- The retired Otigen compiler in [`otic`](https://github.com/pyde-net/otic) — historical artifact, but logic bugs that could resurface post-pivot are still in scope
 - Wire-format / consensus / mempool design issues
 - Logic bugs in `pyde-book` companion specs that, if implemented as
   documented, would create a vulnerability
@@ -99,10 +99,7 @@ networking, otigen toolchain) per
 Vulnerabilities found in the pre-audit code are valuable input to the
 audit, not a sign the audit has failed. We welcome them.
 
-Specifically, the
-[`engine/BENCHMARK_PLAN.md`](https://github.com/pyde-net/engine/blob/main/BENCHMARK_PLAN.md)
-hardening sweep is the gating prerequisite before benchmark numbers
-are published — that work surfaces classes of issues you might find.
+Specifically, the multi-region performance harness build-out (specified in [`pyde-book` companion/PERFORMANCE_HARNESS.md](https://github.com/pyde-net/pyde-book/blob/main/src/companion/PERFORMANCE_HARNESS.md)) is the gating prerequisite before benchmark numbers are published — the work that surfaces it tends to surface vulnerability classes too.
 
 ## Cryptographic primitive caveats
 
