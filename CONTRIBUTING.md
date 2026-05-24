@@ -99,7 +99,7 @@ The pyde-net org is a polyrepo. Active repos:
 | [`wright`](https://github.com/pyde-net/wright) | Retired (pre-WASM-pivot): the pre-WASM-pivot developer toolchain. Replaced by `otigen` (forthcoming). |
 | [`pyde-rust-sdk`](https://github.com/pyde-net/pyde-rust-sdk) | Rust client SDK |
 | [`pyde-ts-sdk`](https://github.com/pyde-net/pyde-ts-sdk) | TypeScript client SDK |
-| [`crypto-wasm`](https://github.com/pyde-net/crypto-wasm) | WASM bindings for `pyde-crypto` |
+| [`pyde-crypto-wasm`](https://github.com/pyde-net/pyde-crypto-wasm) | WASM bindings for `pyde-crypto` |
 | [`otigen-book`](https://github.com/pyde-net/otigen-book) | Historical artifact: original Otigen language reference |
 | [`pips`](https://github.com/pyde-net/pips) | Pyde Improvement Proposals |
 | [`explorer`](https://github.com/pyde-net/explorer) | Block explorer |
