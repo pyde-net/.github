@@ -5,7 +5,7 @@
 <h1 align="center">Pyde</h1>
 
 <p align="center">
-  <em>Post-quantum · MEV-free · Sub-second · Commodity-decentralized</em>
+  <em>Post-quantum · MEV-resistant · Sub-second · Commodity-decentralized</em>
 </p>
 
 ---
@@ -65,8 +65,8 @@ reasons:
 
 Mainnet ships when the implementation is complete, audited, and
 validated by an incentivized testnet. **No public schedule.** No
-external TPS claim without harness evidence — the "claim 1/3 of
-measured peak" discipline.
+external TPS claim without harness evidence — publish only what the
+harness measures, never lab extrapolations.
 
 ---
 
@@ -110,8 +110,7 @@ Engineering rigor is the project's discipline. Every claim in the
 book is grounded in either code that's running or an explicit "this
 is the designed behavior; the code is in flight." Performance
 numbers come from the harness — never from microbenchmarks or
-local devnet measurements — under the "claim 1/3 of measured peak"
-rule.
+local devnet measurements, never lab extrapolations.
 
 This is not vaporware. It is also not yet a shipped chain. The
 distinction matters.
