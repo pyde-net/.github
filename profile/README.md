@@ -52,16 +52,17 @@ reasons:
   Otigen name lives on as the developer toolchain. The full story is
   in [pyde-book/src/preface/pivot.md](https://book.pyde.network/preface/pivot).
 
-| Component                                | State                                            |
-| ---------------------------------------- | ------------------------------------------------ |
-| Architecture design                      | Complete                                         |
-| WASM execution layer (wasmtime + Cranelift) | Foundation in place, integration in flight      |
-| State layer (JMT, dual-hash Blake3+Poseidon2) | In place, dual-hash wiring in flight        |
-| Mysticeti consensus                      | Rebuild in progress post-pivot                   |
-| Threshold cryptography (PQ)              | Research-grade — bleeding-edge                   |
-| Network protocol                         | Existing; libp2p + QUIC migration in flight      |
-| Otigen developer toolchain (WASM-era)    | Specification in flight, scaffold to follow      |
-| Performance harness                      | Not yet built (mandatory before any TPS claim)   |
+| Component                                | State                                                                                                                              |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Architecture design                      | Complete                                                                                                                           |
+| WASM execution layer (wasmtime + Cranelift) | Functional — macro substrate (`#[pyde::entry]` + typed storage + events) + cross-contract calls + typed-storage host fns all shipped |
+| State layer (JMT, hybrid Blake3 + Poseidon2 hashing) | In place; hybrid hashing wired                                                                                                     |
+| Devnet binary (`pyde devnet`)            | Shipped — one-command local devnet, 10 prefunded accounts                                                                          |
+| Developer toolchain (`otigen`)           | Shipped — scaffold / build / test / deploy / inspect / verify / console / wallet / validator across Rust / TinyGo / AssemblyScript / C |
+| Mysticeti consensus                      | Rebuild in progress post-pivot                                                                                                     |
+| Threshold cryptography (PQ)              | Research-grade — bleeding-edge                                                                                                     |
+| Network protocol                         | Existing; libp2p + QUIC migration in flight                                                                                        |
+| Performance harness (multi-region, chain-throughput) | Not yet built (mandatory before any TPS claim)                                                                                     |
 
 Mainnet ships when the implementation is complete, audited, and
 validated by an incentivized testnet. **No public schedule.** No
@@ -85,12 +86,25 @@ at **[book.pyde.network](https://book.pyde.network)** (source lives at
   harness.
 
 Most repositories in the [pyde-net](https://github.com/pyde-net) org
-are **private during pre-mainnet engineering** — access on request.
-Repositories will be opened publicly as the implementation stabilises:
-the post-pivot engine workspace (yet to be re-cut), the `otigen`
-developer toolchain (WASM-era, yet to be bootstrapped), the Rust and
-TypeScript SDKs, the block explorer, and the PIP registry. The
-pre-pivot `otic` compiler, `wright` toolchain, and the original
+are **private during pre-mainnet engineering** — access on request
+([info@pyde.network](mailto:info@pyde.network)). Public today:
+
+- [`pyde-book`](https://github.com/pyde-net/pyde-book) — the canonical
+  technical reference (rendered at [book.pyde.network](https://book.pyde.network)).
+- [`pips`](https://github.com/pyde-net/pips) — the Pyde Improvement
+  Proposal registry.
+- [`pyde-crypto-wasm`](https://github.com/pyde-net/pyde-crypto-wasm) —
+  WebAssembly bindings to the post-quantum primitives for in-browser
+  signing.
+
+The private repos cover the engine workspace (execution + consensus +
+node binary), the `otigen` developer toolchain (scaffold / build /
+test / deploy / inspect / console / wallet / validator), `pyde-crypto`
+itself, the Rust + TypeScript SDKs, the block explorer, and the
+marketing website. Each will open publicly as the implementation
+stabilises and security review allows.
+
+The pre-pivot `otic` compiler, `wright` toolchain, and the original
 Otigen language book are preserved as historical artifacts in the
 [`archive`](https://github.com/pyde-net/archive) repo and in their
 own retired-status repos.
