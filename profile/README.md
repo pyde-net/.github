@@ -18,11 +18,11 @@ today:
   threshold encryption, Poseidon2 + Blake3 hybrid hashing. No
   pre-quantum primitive on any consensus or account path.
 - **MEV resistance by structure, not policy** — threshold-encrypted
-  mempool + commit-before-reveal ordering + DAG consensus. Sandwich
-  attacks, front-running, and proposer extraction are not auctioned
-  or mitigated — they are structurally impossible.
-- **Sub-second finality** — Mysticeti-style DAG consensus with
-  ~500ms median commit, 85-of-128 FALCON quorum certificates.
+  mempool + commit-before-reveal ordering. Sandwich attacks,
+  front-running, and proposer extraction are not auctioned or
+  mitigated — they are structurally impossible.
+- **Sub-second finality** — Mysticeti consensus with ~500ms median
+  commit, 85-of-128 FALCON quorum certificates.
 - **Commodity-hardware decentralization** — full nodes and validators
   awaiting committee selection run on 8c / 16GB. Equal voting power
   within the active committee; single-tier 10,000 PYDE stake
@@ -57,7 +57,7 @@ reasons:
 | Architecture design                      | Complete                                         |
 | WASM execution layer (wasmtime + Cranelift) | Foundation in place, integration in flight      |
 | State layer (JMT, dual-hash Blake3+Poseidon2) | In place, dual-hash wiring in flight        |
-| Mysticeti DAG consensus                  | Rebuild in progress post-pivot                   |
+| Mysticeti consensus                      | Rebuild in progress post-pivot                   |
 | Threshold cryptography (PQ)              | Research-grade — bleeding-edge                   |
 | Network protocol                         | Existing; libp2p + QUIC migration in flight      |
 | Otigen developer toolchain (WASM-era)    | Specification in flight, scaffold to follow      |
