@@ -5,6 +5,10 @@
 <h1 align="center">Pyde</h1>
 
 <p align="center">
+  <strong>The blockchain network.</strong>
+</p>
+
+<p align="center">
   <em>Post-quantum · MEV-resistant · Sub-second · Commodity-decentralized</em>
 </p>
 
