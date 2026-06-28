@@ -5,7 +5,7 @@
 <h1 align="center">Pyde</h1>
 
 <p align="center">
-  <strong>The blockchain network.</strong>
+  <strong>The blockchain, finally</strong>
 </p>
 
 <p align="center">
