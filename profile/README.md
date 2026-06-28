@@ -14,31 +14,30 @@
 
 ---
 
-A Layer 1 blockchain built from scratch around four things no
-production chain offers together today.
+Pyde is a quiet attempt at what blockchain networks should have been
+— built around four properties that should already be standard, and
+that no production chain combines today.
 
-**Built to outlast quantum.** Your assets and your trades are secured
-by post-quantum cryptography from the first block. When quantum
-computers eventually break the math the rest of crypto runs on, Pyde
-keeps working — no emergency hard-fork, no migration crisis.
+**Cryptography that won't break when quantum computing arrives.**
+Post-quantum from the first block. No emergency hard-fork when the
+math the rest of crypto relies on stops being safe.
 
-**No one front-runs you. Not even the chain.** Transactions are
-encrypted before anyone — including the validators ordering them —
-can read what's inside. Sandwiches, front-running, and proposer
-extraction aren't policed or auctioned. They are structurally
-impossible.
+**Transactions nobody — not even the chain — can read until they're
+committed.** Front-running isn't policed or auctioned here. It can't
+happen.
 
-**Done in half a second.** Sub-second finality, not just block time.
-Your trade is final when the chain says it's final.
+**Sub-second finality.** Your trade is final when the chain says it's
+final, and the chain says so in about half a second.
 
-**Runs on a laptop.** Validators don't need a data-center rig. Equal
-voting power inside the active committee; single-tier stake;
-uniform-random selection each epoch. No hardware moats, no validator
-cartels, no quiet centralization.
+**A validator can run on a laptop.** No data-center rigs. Equal
+voting power inside the active committee. No quiet centralization.
 
 Smart contracts run on WebAssembly — write them in **Rust,
 AssemblyScript, Go (TinyGo), or C/C++**, and ship with one tool:
 **`otigen`**.
+
+The work is intentional, slow, and documented end-to-end before it
+ships.
 
 ---
 
@@ -154,12 +153,12 @@ policy on `pyde-crypto` once the audit kicks off).
 
 ## Contact
 
-- 🌐 **Website:** <https://pyde.network>
-- 📘 **Book:** <https://book.pyde.network>
-- 📧 **Email:** `info@pyde.network`
-- 🐦 **X:** [`@pydenet`](https://x.com/pydenet)
-- ✈️ **Telegram:** [`t.me/pydenet`](https://t.me/pydenet)
-- 🔐 **Security disclosures:** `security@pyde.network` (see [SECURITY.md](https://github.com/pyde-net/.github/blob/main/SECURITY.md))
+- **Website:** <https://pyde.network>
+- **Book:** <https://book.pyde.network>
+- **Email:** `info@pyde.network`
+- **X:** [`@pydenet`](https://x.com/pydenet)
+- **Telegram:** [`t.me/pydenet`](https://t.me/pydenet)
+- **Security disclosures:** `security@pyde.network` (see [SECURITY.md](https://github.com/pyde-net/.github/blob/main/SECURITY.md))
 
 ---
 
