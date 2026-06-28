@@ -36,7 +36,7 @@ Smart contracts run on WebAssembly — write them in **Rust,
 AssemblyScript, Go (TinyGo), or C/C++**, and ship with one tool:
 **`otigen`**.
 
-The work is intentional, slow, and documented end-to-end before it
+The work is intentional, and documented end-to-end before it
 ships.
 
 ---
