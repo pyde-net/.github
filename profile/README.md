@@ -9,36 +9,36 @@
 </p>
 
 <p align="center">
-  <em>Post-quantum · MEV-resistant · Sub-second · Commodity-decentralized</em>
+  <em>Quantum-safe · front-run-proof · built to last</em>
 </p>
 
 ---
 
-A Layer 1 blockchain built greenfield to ship four properties as
-defaults at genesis — none of which any production chain combines
-today:
+A Layer 1 blockchain built from scratch around four things no
+production chain offers together today.
 
-- **Post-quantum cryptography** — FALCON-512 signatures, Kyber-768
-  threshold encryption, Poseidon2 + Blake3 hybrid hashing. No
-  pre-quantum primitive on any consensus or account path.
-- **MEV resistance by structure, not policy** — threshold-encrypted
-  mempool + commit-before-reveal ordering. Sandwich attacks,
-  front-running, and proposer extraction are not auctioned or
-  mitigated — they are structurally impossible.
-- **Sub-second finality** — Mysticeti consensus with ~500ms median
-  commit, 85-of-128 FALCON quorum certificates.
-- **Commodity-hardware decentralization** — full nodes and validators
-  awaiting committee selection run on 8c / 16GB. Equal voting power
-  within the active committee; single-tier 10,000 PYDE stake
-  minimum, uniform-random committee selection per epoch.
+**Built to outlast quantum.** Your assets and your trades are secured
+by post-quantum cryptography from the first block. When quantum
+computers eventually break the math the rest of crypto runs on, Pyde
+keeps working — no emergency hard-fork, no migration crisis.
 
-The execution layer is **WebAssembly** via wasmtime, with Cranelift
-ahead-of-time compilation and a hybrid parallel scheduler combining
-static access lists with Block-STM speculation. Smart contracts can
-be authored in **Rust, AssemblyScript, Go (TinyGo), or C/C++** —
-whatever language fits the team — and bundled by the **`otigen`**
-developer toolchain, which handles language detection, build
-invocation, state binding generation, and deploy submission.
+**No one front-runs you. Not even the chain.** Transactions are
+encrypted before anyone — including the validators ordering them —
+can read what's inside. Sandwiches, front-running, and proposer
+extraction aren't policed or auctioned. They are structurally
+impossible.
+
+**Done in half a second.** Sub-second finality, not just block time.
+Your trade is final when the chain says it's final.
+
+**Runs on a laptop.** Validators don't need a data-center rig. Equal
+voting power inside the active committee; single-tier stake;
+uniform-random selection each epoch. No hardware moats, no validator
+cartels, no quiet centralization.
+
+Smart contracts run on WebAssembly — write them in **Rust,
+AssemblyScript, Go (TinyGo), or C/C++**, and ship with one tool:
+**`otigen`**.
 
 ---
 
@@ -59,14 +59,15 @@ reasons:
 | Component                                | State                                                                                                                              |
 | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | Architecture design                      | Complete                                                                                                                           |
-| WASM execution layer (wasmtime + Cranelift) | Functional — macro substrate (`#[pyde::entry]` + typed storage + events) + cross-contract calls + typed-storage host fns all shipped |
-| State layer (JMT, hybrid Blake3 + Poseidon2 hashing) | In place; hybrid hashing wired                                                                                                     |
+| WASM execution (wasmtime + Cranelift AOT, Block-STM) | Live — pooled engine, Host Function ABI v1.0 frozen, Block-STM wired into the commit walk                                          |
+| State (JMT + hybrid Blake3 / Poseidon2 dual root) | Wired end-to-end — `StateRoot { blake3, poseidon2 }` everywhere it matters                                                      |
 | Devnet binary (`pyde devnet`)            | Shipped — one-command local devnet, 10 prefunded accounts                                                                          |
 | Developer toolchain (`otigen`)           | Shipped — scaffold / build / test / deploy / inspect / verify / console / wallet / validator across Rust / TinyGo / AssemblyScript / C |
-| Mysticeti consensus                      | Rebuild in progress post-pivot                                                                                                     |
-| Threshold cryptography (PQ)              | Research-grade — bleeding-edge                                                                                                     |
-| Network protocol                         | Existing; libp2p + QUIC migration in flight                                                                                        |
-| Performance harness (multi-region, chain-throughput) | Not yet built (mandatory before any TPS claim)                                                                                     |
+| Mysticeti DAG consensus                  | In progress — vertex / anchor / beacon / committee / wave commit live; multi-validator genesis DKG + state-sync replay shipped; soak-hardening + resharing edge cases in flight |
+| Threshold cryptography (Kyber-768 + PSS-refresh) | In progress — DKG + per-epoch resharing + live hot-swap shipped; encrypted-tx survival across rotation still tracked as an open bug |
+| Network protocol (libp2p + QUIC + Gossipsub) | Migrated — layered discovery, peer scoring, sentry-friendly topology                                                            |
+| Performance harness (multi-region, chain-throughput) | In progress — local soak driver + multi-validator cluster CLI live; multi-region rig + chaos scenarios not yet built          |
+| SDKs (TypeScript + Rust)                 | In progress — `pyde-ts-sdk` 0.1.0 staged; Rust SDK in build                                                                       |
 
 Mainnet ships when the implementation is complete, audited, and
 validated by an incentivized testnet. **No public schedule.** No
@@ -100,13 +101,16 @@ are **private during pre-mainnet engineering** — access on request
 - [`pyde-crypto-wasm`](https://github.com/pyde-net/pyde-crypto-wasm) —
   WebAssembly bindings to the post-quantum primitives for in-browser
   signing.
+- [`test-releases`](https://github.com/pyde-net/test-releases) —
+  signed binary mirror for `otigen` (the install script resolves
+  against this) with sigstore (cosign) provenance on every release.
 
 The private repos cover the engine workspace (execution + consensus +
 node binary), the `otigen` developer toolchain (scaffold / build /
 test / deploy / inspect / console / wallet / validator), `pyde-crypto`
-itself, the Rust + TypeScript SDKs, the block explorer, and the
-marketing website. Each will open publicly as the implementation
-stabilises and security review allows.
+itself, the Rust + TypeScript SDKs, the block explorer, the testnet
+faucet, and the marketing website. Each will open publicly as the
+implementation stabilises and security review allows.
 
 The pre-pivot `otic` compiler, `wright` toolchain, and the original
 Otigen language book are preserved as historical artifacts in the
@@ -150,12 +154,12 @@ policy on `pyde-crypto` once the audit kicks off).
 
 ## Contact
 
-- 📧 **Email:** `info@pyde.network`
 - 🌐 **Website:** <https://pyde.network>
+- 📘 **Book:** <https://book.pyde.network>
+- 📧 **Email:** `info@pyde.network`
+- 🐦 **X:** [`@pydenet`](https://x.com/pydenet)
+- ✈️ **Telegram:** [`t.me/pydenet`](https://t.me/pydenet)
 - 🔐 **Security disclosures:** `security@pyde.network` (see [SECURITY.md](https://github.com/pyde-net/.github/blob/main/SECURITY.md))
-
-(Additional channels will be announced as the project moves from
-pre-mainnet engineering toward public testnet.)
 
 ---
 
@@ -165,4 +169,4 @@ Code is licensed under Apache-2.0 (per-repo `LICENSE` files).
 The book is licensed under CC BY-SA 4.0.
 
 Substantive protocol changes go through a **PIP** (Pyde Improvement
-Proposal) — see the `pips` repo once it's published.
+Proposal) — see the [`pips`](https://github.com/pyde-net/pips) repo.
