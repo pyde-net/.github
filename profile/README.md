@@ -118,26 +118,6 @@ own retired-status repos.
 
 ---
 
-## Who's building this
-
-Pyde is built by **zarah**, making the technical choices and shipping
-the work. The consensus pivot from HotStuff to Mysticeti DAG and the
-execution pivot from a custom VM to WebAssembly both reflect an
-explicit preference for designing from a clean foundation over
-patching accumulated technical debt — and for killing darlings
-honestly when the evidence says they should be killed.
-
-Engineering rigor is the project's discipline. Every claim in the
-book is grounded in either code that's running or an explicit "this
-is the designed behavior; the code is in flight." Performance
-numbers come from the harness — never from microbenchmarks or
-local devnet measurements, never lab extrapolations.
-
-This is not vaporware. It is also not yet a shipped chain. The
-distinction matters.
-
----
-
 ## Community
 
 - 📜 [**Contributing**](https://github.com/pyde-net/.github/blob/main/CONTRIBUTING.md) — how to propose changes, PIP process, engineering standards
