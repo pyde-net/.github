@@ -1,6 +1,6 @@
 # Security Policy
 
-Pyde is a post-quantum Layer 1 blockchain in pre-mainnet development.
+Pyde is a Layer 1 blockchain in pre-mainnet development.
 This policy applies to every repo in the
 [pyde-net](https://github.com/pyde-net) org unless an individual repo
 overrides it with a more specific `SECURITY.md`.
@@ -9,8 +9,8 @@ overrides it with a more specific `SECURITY.md`.
 
 **Do not open a public issue for security vulnerabilities.**
 
-Email: **`security@pyde.network`** *(or until that's live: `info@pyde.network`
-— project contact via README)*
+Email: **`security@pyde.network`** *(or until that's live: `info@pyde.network`,
+the project contact via README)*
 
 Please include:
 
@@ -31,7 +31,7 @@ In scope:
 - All public code in `pyde-net` org repos
 - Cryptographic implementations in [`pyde-crypto`](https://github.com/pyde-net/pyde-crypto)
 - The WASM execution layer (post-pivot, to be re-cut in a fresh engine workspace; the pre-pivot reference is in [`archive`](https://github.com/pyde-net/archive))
-- The retired Otigen compiler in [`otic`](https://github.com/pyde-net/otic) — historical artifact, but logic bugs that could resurface post-pivot are still in scope
+- The retired Otigen compiler in [`otic`](https://github.com/pyde-net/otic), a historical artifact, though logic bugs that could resurface post-pivot are still in scope
 - Wire-format / consensus / mempool design issues
 - Logic bugs in `pyde-book` companion specs that, if implemented as
   documented, would create a vulnerability
@@ -40,9 +40,9 @@ Out of scope:
 
 - The pre-pivot codebase in [`archive`](https://github.com/pyde-net/archive)
   (archived, read-only, not part of the active project)
-- Third-party dependencies (report those upstream — we'll happily help
+- Third-party dependencies (report those upstream, and we'll happily help
   with disclosure coordination, but the patch belongs there)
-- Issues in private/internal infrastructure (CI keys, secrets, etc.) —
+- Issues in private/internal infrastructure (CI keys, secrets, etc.);
   report directly via email regardless of "scope"
 - Social-engineering issues unrelated to protocol design
 - Issues that require a compromised wallet, browser, or operator
@@ -64,9 +64,9 @@ We use a standard four-level scale:
 Standard responsible-disclosure with reasonable flexibility:
 
 - **Day 0:** Report received, acknowledged within 5 business days
-- **Day 14–90:** Triage, fix, internal review. We'll keep you updated
+- **Day 14 to 90:** Triage, fix, internal review. We'll keep you updated
 - **Disclosure:** Coordinated public disclosure once a patch is released,
-  or after 90 days (whichever is sooner) — unless we explicitly agree
+  or after 90 days (whichever is sooner), unless we explicitly agree
   on an extended embargo for serious issues
 
 We will credit you in the disclosure unless you prefer anonymity.
@@ -99,23 +99,20 @@ networking, otigen toolchain) per
 Vulnerabilities found in the pre-audit code are valuable input to the
 audit, not a sign the audit has failed. We welcome them.
 
-Specifically, the multi-region performance harness build-out (specified in [`pyde-book` companion/PERFORMANCE_HARNESS.md](https://book.pyde.network/companion/PERFORMANCE_HARNESS)) is the gating prerequisite before benchmark numbers are published — the work that surfaces it tends to surface vulnerability classes too.
+Specifically, the multi-region performance harness build-out (specified in [`pyde-book` companion/PERFORMANCE_HARNESS.md](https://book.pyde.network/companion/PERFORMANCE_HARNESS)) is the gating prerequisite before benchmark numbers are published, and the work that surfaces it tends to surface vulnerability classes too.
 
 ## Cryptographic primitive caveats
 
-Two known constraints surface here, both tracked for post-mainnet
+One known constraint surfaces here, tracked for post-mainnet
 hardening:
 
-- `ml-kem` is at `0.3.0-rc.0` (NIST FIPS 203 release candidate);
-  upgrading to the stable release is on the post-mainnet checklist.
-- PSS resharing in `pyde-crypto::threshold` verifies polynomial
-  consistency but does **not** detect constant-term substitution.
-  Pedersen / KZG commitments on resharing shares are post-mainnet
-  hardening (see `pyde-book` Chapter 8 §8.6).
+- `ml-kem` (Kyber-768, used for transport-layer encryption) is at
+  `0.3.0-rc.0` (NIST FIPS 203 release candidate); upgrading to the
+  stable release is on the post-mainnet checklist.
 
-Reports against these known constraints are appreciated as confirmation
-or expansion of impact, but the constraints themselves are not novel.
+Reports against this known constraint are appreciated as confirmation
+or expansion of impact, but the constraint itself is not novel.
 
 ## License
 
-This security policy is licensed under CC0 — copy + adapt freely.
+This security policy is licensed under CC0, so copy and adapt freely.

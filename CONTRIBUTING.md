@@ -1,6 +1,6 @@
 # Contributing to Pyde
 
-Thanks for thinking about contributing. Pyde is a post-quantum Layer 1
+Thanks for thinking about contributing. Pyde is a Layer 1
 in active pre-mainnet development. The repos in the
 [pyde-net](https://github.com/pyde-net) org share this contribution
 process unless an individual repo overrides it.
@@ -9,7 +9,7 @@ process unless an individual repo overrides it.
 
 There are two ways to contribute, depending on what you're changing.
 
-### Path A — Protocol-affecting changes (require a PIP)
+### Path A: Protocol-affecting changes (require a PIP)
 
 If your change affects:
 
@@ -32,15 +32,14 @@ The short version:
 1. Open a PR against `pyde-net/pips` adding `pip-NNNN-short-title.md`
 2. Iterate through Draft → Review → Last Call → Accepted (or Rejected)
 3. After acceptance, the reference implementation PR lands in the
-   relevant repo (`pyde-crypto`, the post-pivot engine workspace once
-   re-cut, the `otigen` toolchain once bootstrapped, etc.) referencing
-   the PIP number
+   relevant repo (`pyde-crypto`, the engine, the `otigen` toolchain,
+   etc.) referencing the PIP number
 4. Validators upgrade voluntarily at the activation slot
 
-### Path B — Non-protocol changes (regular PR)
+### Path B: Non-protocol changes (regular PR)
 
 Bug fixes, clippy cleanup, test additions, documentation improvements,
-build / CI tweaks, new examples — these don't need a PIP. Just open a
+build / CI tweaks, new examples. These don't need a PIP. Just open a
 PR against the relevant repo.
 
 ## Engineering standards
@@ -57,7 +56,7 @@ The bar for code merged into a `main` branch:
 - No new `unwrap()` / `expect()` on untrusted-input paths (validate +
   return a typed error instead)
 
-For changes that touch `pyde-crypto`, the WASM execution layer, the consensus layer, the state layer, or any other security-relevant code path, expect a more careful review and possibly external audit gating before mainnet inclusion. (Post-pivot the WASM-execution / consensus / state crates live in a fresh engine workspace yet to be re-cut; the pre-pivot equivalents are in [`archive`](https://github.com/pyde-net/archive) for historical reference.)
+For changes that touch `pyde-crypto`, the WASM execution layer, the consensus layer, the state layer, or any other security-relevant code path, expect a more careful review and possibly external audit gating before mainnet inclusion. (The pre-pivot equivalents are preserved in [`archive`](https://github.com/pyde-net/archive) for historical reference.)
 
 ## Commit messages
 
@@ -66,7 +65,7 @@ We use a light convention loosely based on Conventional Commits:
 ```
 <type>(<scope>): <subject>
 
-<body — what + why, not how>
+<body: what + why, not how>
 ```
 
 Common types: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`,
@@ -92,9 +91,9 @@ The pyde-net org is a polyrepo. Active repos:
 | Repo | Purpose |
 |---|---|
 | [`pyde-book`](https://github.com/pyde-net/pyde-book) | Technical reference (book + companion specs) |
-| `engine` | Post-pivot WASM execution layer (state, accounts, transactions, consensus). To be re-cut as a fresh workspace; pre-pivot crates preserved in [`archive`](https://github.com/pyde-net/archive). |
-| [`pyde-crypto`](https://github.com/pyde-net/pyde-crypto) | Post-quantum cryptography crate (standalone polyrepo) |
-| `otigen` | Post-pivot developer toolchain (WASM-era; see [`pyde-book` Chapter 5](https://book.pyde.network/chapters/05-otigen-toolchain)). To be bootstrapped. |
+| `engine` | The blockchain engine: execution, state, accounts, transactions, and consensus. Pre-pivot crates preserved in [`archive`](https://github.com/pyde-net/archive). |
+| [`pyde-crypto`](https://github.com/pyde-net/pyde-crypto) | Cryptography crate (standalone polyrepo) |
+| `otigen` | The developer toolchain: scaffold, build, test, deploy, verify (see [`pyde-book` Chapter 5](https://book.pyde.network/chapters/05-otigen-toolchain)). |
 | [`otic`](https://github.com/pyde-net/otic) | Retired (pre-WASM-pivot): the Otigen-language compiler. Preserved as historical artifact. |
 | [`wright`](https://github.com/pyde-net/wright) | Retired (pre-WASM-pivot): the pre-WASM-pivot developer toolchain. Replaced by `otigen` (forthcoming). |
 | [`pyde-rust-sdk`](https://github.com/pyde-net/pyde-rust-sdk) | Rust client SDK |
@@ -106,7 +105,7 @@ The pyde-net org is a polyrepo. Active repos:
 | [`website`](https://github.com/pyde-net/website) | Marketing site (pyde.network) |
 | [`archive`](https://github.com/pyde-net/archive) | Pre-pivot codebase (archived, read-only) |
 
-Most are private during pre-mainnet engineering — access on request.
+Many of the engine repos stay private during pre-mainnet engineering; access on request.
 
 ## Communication
 
