@@ -18,7 +18,7 @@ Pyde is a quiet attempt at what a blockchain could have been from the start. Not
 
 **Trades that can't be front-run.** On most chains, bots quietly tax ordinary users by reordering their trades. On Pyde, a transaction's place in line is locked before anyone, including the network itself, can see what it contains. There is no committee key to trust and no relayer to opt into, so front-running has nothing to act on. Users keep the price they signed.
 
-**Tokens you can't get wrong.** On Pyde, a token is a short form you fill out, not code you write. One audited implementation turns the form into the contract, so nobody writes token code and nobody can write a token bug.
+**One network, not another island.** Every new chain splits liquidity and users a little further, and the bridges meant to reconnect them keep getting drained. Pyde is built to reach the rest of the world through its own security, not a bridge you have to trust. A Pyde transaction is verifiable by anyone today, and the parachain layer that connects it to other chains and to real-world data is the chapter we are building next.
 
 **A network anyone can run.** A validator runs on an ordinary laptop, not a data center rig, and every seat on the committee carries one vote regardless of stake. No quiet centralization.
 
