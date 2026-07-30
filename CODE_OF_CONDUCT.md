@@ -64,9 +64,9 @@ offensive, or harmful.
 
 ## Scope
 
-This Code of Conduct applies within all community spaces — issue
-trackers, PR threads, PIP discussions, project Discord/Slack (when
-they exist), real-life events held under the Pyde banner — and also
+This Code of Conduct applies within all community spaces (issue
+trackers, PR threads, PIP discussions, project Discord or Slack when
+they exist, and real-life events held under the Pyde banner), and also
 applies when an individual is officially representing the project in
 public spaces.
 

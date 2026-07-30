@@ -5,129 +5,55 @@
 <h1 align="center">Pyde</h1>
 
 <p align="center">
-  <strong>The blockchain, finally</strong>
+  <strong>The blockchain, finally.</strong>
 </p>
 
 <p align="center">
-  <em>Quantum-safe · front-run-proof · built to last</em>
+  <em>Fair by default · anyone can run it · built to last</em>
 </p>
 
 ---
 
-Pyde is a quiet attempt at what blockchain networks should have been
-— built around four properties that should already be standard, and
-that no production chain combines today.
+Pyde is a quiet attempt at what a blockchain could have been from the start. Not a faster copy of what already exists, but a base layer built around a handful of properties that should already be standard, and that no production chain combines today.
 
-**Cryptography that won't break when quantum computing arrives.**
-Post-quantum from the first block. No emergency hard-fork when the
-math the rest of crypto relies on stops being safe.
+**Trades that can't be front-run.** On most chains, bots quietly tax ordinary users by reordering their trades. On Pyde, a transaction's place in line is locked before anyone, including the network itself, can see what it contains. There is no committee key to trust and no relayer to opt into, so front-running has nothing to act on. Users keep the price they signed.
 
-**Transactions nobody — not even the chain — can read until they're
-committed.** Front-running isn't policed or auctioned here. It can't
-happen.
+**Tokens you can't get wrong.** On Pyde, a token is a short form you fill out, not code you write. One audited implementation turns the form into the contract, so nobody writes token code and nobody can write a token bug.
 
-**Sub-second finality.** Your trade is final when the chain says it's
-final, and the chain says so in about half a second.
+**A network anyone can run.** A validator runs on an ordinary laptop, not a data center rig, and every seat on the committee carries one vote regardless of stake. No quiet centralization.
 
-**A validator can run on a laptop.** No data-center rigs. Equal
-voting power inside the active committee. No quiet centralization.
+**Fast, and built to last.** Your transaction is final when the chain says it is, and it says so in about half a second. The cryptography protecting it is chosen to stay valid for decades, long after today's computers can no longer keep it safe.
 
-Smart contracts run on WebAssembly — write them in **Rust,
-AssemblyScript, Go (TinyGo), or C/C++**, and ship with one tool:
-**`otigen`**.
-
-The work is intentional, and documented end-to-end before it
-ships.
+Contracts run on WebAssembly, so teams build in languages they already know (Rust, Go, C, and AssemblyScript) and ship with a single tool, `otigen`. The work is deliberate, and documented end to end before it ships.
 
 ---
 
-## Honest status
+## Where it stands
 
-Pyde is **pre-mainnet**. Architecture design is complete. The protocol
-has gone through two clean pivots, both honest, both for the right
-reasons:
+We would rather be plain about status than polished about it. Pyde is pre-mainnet. The architecture is designed, and the hard parts are built: the execution engine runs, the state layer is wired end to end, the developer toolchain and a one-command local devnet are shipped, and the native token standard works from start to finish. Consensus is live and being hardened under sustained, adversarial conditions.
 
-- **Consensus pivot** — from an in-house HotStuff variant (whose
-  persistent wedges and stalls at 400ms slot timing motivated a clean
-  rebuild) to Mysticeti-style DAG consensus.
-- **Execution pivot** — from a custom virtual machine and a
-  domain-specific language (Otigen) to WebAssembly via wasmtime. The
-  Otigen name lives on as the developer toolchain. The full story is
-  in [pyde-book/src/preface/pivot.md](https://book.pyde.network/preface/pivot).
-
-| Component                                | State                                                                                                                              |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Architecture design                      | Complete                                                                                                                           |
-| WASM execution (wasmtime + Cranelift AOT, Block-STM) | Live — pooled engine, Host Function ABI v1.0 frozen, Block-STM wired into the commit walk                                          |
-| State (JMT + hybrid Blake3 / Poseidon2 dual root) | Wired end-to-end — `StateRoot { blake3, poseidon2 }` everywhere it matters                                                      |
-| Devnet binary (`pyde devnet`)            | Shipped — one-command local devnet, 10 prefunded accounts                                                                          |
-| Developer toolchain (`otigen`)           | Shipped — scaffold / build / test / deploy / inspect / verify / console / wallet / validator across Rust / TinyGo / AssemblyScript / C |
-| Mysticeti DAG consensus                  | In progress — vertex / anchor / beacon / committee / wave commit live; multi-validator genesis DKG + state-sync replay shipped; soak-hardening + resharing edge cases in flight |
-| Threshold cryptography (Kyber-768 + PSS-refresh) | In progress — DKG + per-epoch resharing + live hot-swap shipped; encrypted-tx survival across rotation still tracked as an open bug |
-| Network protocol (libp2p + QUIC + Gossipsub) | Migrated — layered discovery, peer scoring, sentry-friendly topology                                                            |
-| Performance harness (multi-region, chain-throughput) | In progress — local soak driver + multi-validator cluster CLI live; multi-region rig + chaos scenarios not yet built          |
-| SDKs (TypeScript + Rust)                 | In progress — `pyde-ts-sdk` 0.1.0 staged; Rust SDK in build                                                                       |
-
-Mainnet ships when the implementation is complete, audited, and
-validated by an incentivized testnet. **No public schedule.** No
-external TPS claim without harness evidence — publish only what the
-harness measures, never lab extrapolations.
+What remains is the careful part. Proving the network holds up under real load, completing external security audits, and standing up the public infrastructure that lets anyone join. Mainnet ships when the work is complete, audited, and validated by an incentivized testnet. There is no public schedule, and we publish performance numbers only after a real multi-region harness has measured them, never lab estimates.
 
 ---
 
-## Read
+## Explore
 
-The comprehensive technical reference is the **Pyde Book** — read it
-at **[book.pyde.network](https://book.pyde.network)** (source lives at
-[`pyde-net/pyde-book`](https://github.com/pyde-net/pyde-book)):
+- **[The Pyde Book](https://book.pyde.network)** is the full story and the complete technical reference, from how the chain works to how it launches. Source lives at [`pyde-book`](https://github.com/pyde-net/pyde-book).
+- **[Pyde Improvement Proposals](https://github.com/pyde-net/pips)** are where the protocol grows, one proposal at a time.
 
-- 📘 **[Pyde Book](https://book.pyde.network)** — full architecture:
-  20 chapters covering the VM, state model, consensus, cryptography,
-  MEV protection, gas/fee model, account model, networking,
-  governance, security, and the phased launch plan.
-  Includes companion specs for the threat model, slashing, validator
-  lifecycle, state sync, chain halt + recovery, and the performance
-  harness.
+Open source today: the book, the improvement proposals, the cryptography ([`pyde-crypto`](https://github.com/pyde-net/pyde-crypto) and its [browser build](https://github.com/pyde-net/pyde-crypto-wasm)), the contract interface ([`pyde-host`](https://github.com/pyde-net/pyde-host)), the [Rust](https://github.com/pyde-net/pyde-rust-sdk) and [TypeScript](https://github.com/pyde-net/pyde-ts-sdk) SDKs, the [contract templates](https://github.com/pyde-net/otigen-templates), and the signed [toolchain releases](https://github.com/pyde-net/test-releases).
 
-Most repositories in the [pyde-net](https://github.com/pyde-net) org
-are **private during pre-mainnet engineering** — access on request
-([info@pyde.network](mailto:info@pyde.network)). Public today:
-
-- [`pyde-book`](https://github.com/pyde-net/pyde-book) — the canonical
-  technical reference (rendered at [book.pyde.network](https://book.pyde.network)).
-- [`pips`](https://github.com/pyde-net/pips) — the Pyde Improvement
-  Proposal registry.
-- [`pyde-crypto-wasm`](https://github.com/pyde-net/pyde-crypto-wasm) —
-  WebAssembly bindings to the post-quantum primitives for in-browser
-  signing.
-- [`test-releases`](https://github.com/pyde-net/test-releases) —
-  signed binary mirror for `otigen` (the install script resolves
-  against this) with sigstore (cosign) provenance on every release.
-
-The private repos cover the engine workspace (execution + consensus +
-node binary), the `otigen` developer toolchain (scaffold / build /
-test / deploy / inspect / console / wallet / validator), `pyde-crypto`
-itself, the Rust + TypeScript SDKs, the block explorer, the testnet
-faucet, and the marketing website. Each will open publicly as the
-implementation stabilises and security review allows.
-
-The pre-pivot `otic` compiler, `wright` toolchain, and the original
-Otigen language book are preserved as historical artifacts in the
-[`archive`](https://github.com/pyde-net/archive) repo and in their
-own retired-status repos.
+The engine, the `otigen` toolchain, the in-browser playground, the explorer, the faucet, and the website stay private during pre-mainnet engineering, and open as each stabilizes and security review allows. Access on request at [info@pyde.network](mailto:info@pyde.network).
 
 ---
 
 ## Community
 
-- 📜 [**Contributing**](https://github.com/pyde-net/.github/blob/main/CONTRIBUTING.md) — how to propose changes, PIP process, engineering standards
-- 🔒 [**Security policy**](https://github.com/pyde-net/.github/blob/main/SECURITY.md) — vulnerability disclosure, scope, safe harbor
-- 🤝 [**Code of Conduct**](https://github.com/pyde-net/.github/blob/main/CODE_OF_CONDUCT.md) — community standards (Contributor Covenant 2.1)
-- 📋 [**Pyde Improvement Proposals (PIPs)**](https://github.com/pyde-net/pips) — protocol-affecting changes go here
+- [**Contributing**](https://github.com/pyde-net/.github/blob/main/CONTRIBUTING.md), how to propose changes, the PIP process, and engineering standards.
+- [**Security policy**](https://github.com/pyde-net/.github/blob/main/SECURITY.md), vulnerability disclosure, scope, and safe harbor.
+- [**Code of Conduct**](https://github.com/pyde-net/.github/blob/main/CODE_OF_CONDUCT.md), our community standards (Contributor Covenant 2.1).
 
-These apply org-wide. Individual repos may publish more specific
-versions where the domain warrants it (e.g., a crate-specific security
-policy on `pyde-crypto` once the audit kicks off).
+These apply across the org. Substantive protocol changes go through a Pyde Improvement Proposal in the [`pips`](https://github.com/pyde-net/pips) repo.
 
 ---
 
@@ -138,14 +64,10 @@ policy on `pyde-crypto` once the audit kicks off).
 - **Email:** `info@pyde.network`
 - **X:** [`@pydenet`](https://x.com/pydenet)
 - **Telegram:** [`t.me/pydenet`](https://t.me/pydenet)
-- **Security disclosures:** `security@pyde.network` (see [SECURITY.md](https://github.com/pyde-net/.github/blob/main/SECURITY.md))
+- **Security disclosures:** `security@pyde.network`
 
 ---
 
 ## License
 
-Code is licensed under Apache-2.0 (per-repo `LICENSE` files).
-The book is licensed under CC BY-SA 4.0.
-
-Substantive protocol changes go through a **PIP** (Pyde Improvement
-Proposal) — see the [`pips`](https://github.com/pyde-net/pips) repo.
+Code is licensed under Apache-2.0 (per-repo `LICENSE` files). The book is licensed under CC BY-SA 4.0.
