@@ -1,125 +1,79 @@
 # Contributing to Pyde
 
-Thanks for thinking about contributing. Pyde is a Layer 1
-in active pre-mainnet development. The repos in the
-[pyde-net](https://github.com/pyde-net) org share this contribution
-process unless an individual repo overrides it.
+Thanks for thinking about contributing. Pyde is infrastructure for global economic state, organized into three economic environments: Tier 1 sovereign consortium networks, Tier 2 open interlinking settlement infrastructure, and Tier 3 a permissionless public network.
 
-## The two paths
+The repositories in the pyde-net organization share this contribution process unless an individual repository defines a more specific policy.
 
-There are two ways to contribute, depending on what you're changing.
+## Protocol and non protocol changes
 
-### Path A: Protocol-affecting changes (require a PIP)
+A change is protocol affecting when it can alter shared state, consensus, execution semantics, authority boundaries, or economic coordination. Examples include consensus and finality rules, transaction formats, state transitions, execution environments, host functions, contract interfaces, cryptographic primitives, account and authorization state, cross domain settlement, FX data aggregation, obligations, positions, netting, validator rules, staking, fee distribution, and tier specific capability boundaries.
 
-If your change affects:
+Protocol changes require a Pyde Improvement Proposal (PIP) before implementation is accepted. See the PIPs repository for the proposal process. An accepted PIP is then implemented in the relevant repository with the PIP number referenced in the change. Activation and migration rules are defined by the proposal and affected protocol.
 
-- Consensus rules
-- Transaction types or wire formats
-- Gas costs or fee distribution
-- Cryptographic primitives
-- State layout or commitment scheme
-- The WASM host function ABI
-- Validator / staking / slashing logic
-
-…then it's a **protocol change** and requires a **PIP (Pyde Improvement
-Proposal)** before any implementation lands. See the
-[pips](https://github.com/pyde-net/pips) repo for the process, and
-[PIP-0001](https://github.com/pyde-net/pips/blob/main/pip-0001-pip-purpose.md)
-for the system overview.
-
-The short version:
-
-1. Open a PR against `pyde-net/pips` adding `pip-NNNN-short-title.md`
-2. Iterate through Draft → Review → Last Call → Accepted (or Rejected)
-3. After acceptance, the reference implementation PR lands in the
-   relevant repo (`pyde-crypto`, the engine, the `otigen` toolchain,
-   etc.) referencing the PIP number
-4. Validators upgrade voluntarily at the activation slot
-
-### Path B: Non-protocol changes (regular PR)
-
-Bug fixes, clippy cleanup, test additions, documentation improvements,
-build / CI tweaks, new examples. These don't need a PIP. Just open a
-PR against the relevant repo.
+Bug fixes that do not alter protocol semantics, tests, documentation, examples, build and CI changes, tooling maintenance, and routine cleanup can proceed as regular pull requests. When a change is borderline, treat it as protocol affecting until the relevant maintainers establish that it is not.
 
 ## Engineering standards
 
-The bar for code merged into a `main` branch:
+The bar for code merged into a main branch includes:
 
-- **`cargo build`** clean
-- **`cargo test`** passing
-- **`cargo clippy --workspace -- -D warnings`** passing
-- **`cargo fmt`** applied
-- New code has tests where the change is non-trivial
-- No new `unsafe` blocks without a documented invariant comment
-  explaining why and what it relies on
-- No new `unwrap()` / `expect()` on untrusted-input paths (validate +
-  return a typed error instead)
+- `cargo build` clean
+- `cargo test` passing
+- `cargo clippy --workspace -- -D warnings` passing
+- `cargo fmt` applied
+- New code has tests where the change is non trivial
+- New `unsafe` blocks include a documented invariant explaining their safety assumptions
+- No new `unwrap()` or `expect()` calls on untrusted input paths without explicit justification and validation
 
-For changes that touch `pyde-crypto`, the WASM execution layer, the consensus layer, the state layer, or any other security-relevant code path, expect a more careful review and possibly external audit gating before mainnet inclusion. (The pre-pivot equivalents are preserved in [`archive`](https://github.com/pyde-net/archive) for historical reference.)
+Security relevant components such as cryptography, execution, consensus, state, networking, settlement, and authorization receive deeper review and independent security scrutiny where the risk warrants it.
+
+## Repository structure
+
+Pyde uses multiple repositories around a shared protocol foundation. Repository access and visibility vary by component.
+
+| Area | Scope |
+|---|---|
+| Protocol core | Execution, state, consensus, accounts, and transactions |
+| Settlement infrastructure | Cross domain settlement, FX observations, obligations, positions, and netting |
+| Cryptography | Signatures, key exchange, hashing, proof, and state primitives |
+| Developer tooling | Contract build, test, deploy, verification, and local development |
+| SDKs and interfaces | Client libraries and contract facing APIs |
+| Documentation and proposals | Technical documentation and Pyde Improvement Proposals |
+| Website | Public architecture and project information |
+
+Repository specific README, CONTRIBUTING, and security policies override this document where they define more specific requirements.
+
+## Pull requests
+
+A pull request should explain what changed, why the change is needed, which protocol or repository boundary it affects, how the change was tested, and any migration, compatibility, or security implications.
+
+For protocol changes, link the relevant PIP directly in the pull request.
 
 ## Commit messages
 
 We use a light convention loosely based on Conventional Commits:
 
-```
+```text
 <type>(<scope>): <subject>
 
 <body: what + why, not how>
 ```
 
-Common types: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`,
-`perf`, `style`, `ci`. Scope is the module or area, e.g. `feat(crypto):`,
-`fix(consensus):`, `docs(book):`.
+Common types include `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `perf`, `style`, and `ci`.
 
-**Do not include any AI / LLM attribution** (no `Co-Authored-By` for
-Claude / GPT / etc.) on commits or PRs. The work reads as the
-contributor's own.
+## Security sensitive work
 
-## PR review
+Changes to cryptography, consensus, execution, state, validator logic, authorization, settlement, or cross domain coordination may require focused security review, adversarial testing, reproducible benchmarks where performance claims are affected, and independent audit before production use when the risk profile warrants it.
 
-- One reviewer is enough for non-protocol changes
-- Protocol changes require PIP acceptance + at least one core-team
-  reviewer
-- For security-sensitive code (crypto, consensus, AOT), reviewer must
-  explicitly LGTM the security implications
-
-## Repository structure
-
-The pyde-net org is a polyrepo. Active repos:
-
-| Repo | Purpose |
-|---|---|
-| [`pyde-book`](https://github.com/pyde-net/pyde-book) | Technical reference (book + companion specs) |
-| `engine` | The blockchain engine: execution, state, accounts, transactions, and consensus. Pre-pivot crates preserved in [`archive`](https://github.com/pyde-net/archive). |
-| [`pyde-crypto`](https://github.com/pyde-net/pyde-crypto) | Cryptography crate (standalone polyrepo) |
-| `otigen` | The developer toolchain: scaffold, build, test, deploy, verify (see [`pyde-book` Chapter 5](https://book.pyde.network/chapters/05-otigen-toolchain)). |
-| [`otic`](https://github.com/pyde-net/otic) | Retired (pre-WASM-pivot): the Otigen-language compiler. Preserved as historical artifact. |
-| [`wright`](https://github.com/pyde-net/wright) | Retired (pre-WASM-pivot): the pre-WASM-pivot developer toolchain. Replaced by `otigen` (forthcoming). |
-| [`pyde-rust-sdk`](https://github.com/pyde-net/pyde-rust-sdk) | Rust client SDK |
-| [`pyde-ts-sdk`](https://github.com/pyde-net/pyde-ts-sdk) | TypeScript client SDK |
-| [`pyde-crypto-wasm`](https://github.com/pyde-net/pyde-crypto-wasm) | WASM bindings for `pyde-crypto` |
-| [`otigen-book`](https://github.com/pyde-net/otigen-book) | Historical artifact: original Otigen language reference |
-| [`pips`](https://github.com/pyde-net/pips) | Pyde Improvement Proposals |
-| [`explorer`](https://github.com/pyde-net/explorer) | Block explorer |
-| [`website`](https://github.com/pyde-net/website) | Marketing site (pyde.network) |
-| [`archive`](https://github.com/pyde-net/archive) | Pre-pivot codebase (archived, read-only) |
-
-Many of the engine repos stay private during pre-mainnet engineering; access on request.
+Security reports must follow SECURITY.md rather than being opened as public issues.
 
 ## Communication
 
-- Substantive design discussion: open an issue on the relevant repo
-- PIP discussion: PR threads on `pyde-net/pips`
-- Security disclosures: see [`SECURITY.md`](./SECURITY.md)
+Use the issue tracker or pull request discussion of the relevant repository for substantive technical discussion. Protocol design changes belong in the PIP process.
 
 ## Code of Conduct
 
-This project follows the [Contributor Covenant](./CODE_OF_CONDUCT.md).
-By participating you agree to its terms.
+This project follows the Contributor Covenant in CODE_OF_CONDUCT.md. By participating, you agree to follow it.
 
 ## License
 
-Pyde code is Apache-2.0; the book is CC BY-SA 4.0. By contributing,
-you agree your contribution is licensed under the same terms as the
-repository you're contributing to.
+Follow the LICENSE file in the repository receiving the contribution. Repository specific licensing terms take precedence over this organization wide guide.
