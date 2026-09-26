@@ -5,69 +5,84 @@
 <h1 align="center">Pyde</h1>
 
 <p align="center">
-  <strong>The blockchain, finally.</strong>
+  <strong>Infrastructure for Global Economic State</strong>
 </p>
 
 <p align="center">
-  <em>Fair by default · anyone can run it · built to last</em>
+  <em>One protocol foundation across sovereign networks, open settlement, and permissionless infrastructure</em>
 </p>
 
----
+Pyde is a protocol architecture for representing and coordinating economic state across sovereign economic networks, open settlement infrastructure, and a permissionless public network.
 
-Pyde is a quiet attempt at what a blockchain could have been from the start. Not a faster copy of what already exists, but a base layer built around a handful of properties that should already be standard, and that no production chain combines today.
+The core abstraction is **global economic state**. It is broader than tokenized assets. It includes balances, ownership, authorization, identity references, obligations, licenses, settlement positions, regulatory status, and the rules that govern how those states change.
 
-**Trades that can't be front-run.** On most chains, bots quietly tax ordinary users by reordering their trades. On Pyde, a transaction's place in line is locked before anyone, including the network itself, can see what it contains. There is no committee key to trust and no relayer to opt into, so front-running has nothing to act on. Users keep the price they signed.
+## The three economic environments
 
-**One network, not another island.** Every new chain splits liquidity and users a little further, and the bridges meant to reconnect them keep getting drained. Pyde is built to reach the rest of the world through its own security, not a bridge you have to trust. A Pyde transaction is verifiable by anyone today, and the parachain layer that connects it to other chains and to real-world data is the chapter we are building next.
+### Tier 1 — Sovereign Consortium Network
 
-**A network anyone can run.** A validator runs on an ordinary laptop, not a data center rig, and every seat on the committee carries one vote regardless of stake. No quiet centralization.
+A sovereign economic domain operates as a permissioned network whose validators are designated sovereign institutions such as central banks, finance ministries, and tax authorities.
 
-**Fast, and built to last.** Your transaction is final when the chain says it is, and it says so in about half a second. The cryptography protecting it is chosen to stay valid for decades, long after today's computers can no longer keep it safe.
+The network can represent a native sovereign digital currency and state controlled economic rules including KYC status, minting, burning, freezing, seizure, and institutional authorization. Identity remains outside the ledger; the protocol stores the references and state needed to enforce the jurisdiction's rules.
 
-Contracts run on WebAssembly, so teams build in languages they already know (Rust, Go, C, and AssemblyScript) and ship with a single tool, `otigen`. The work is deliberate, and documented end to end before it ships.
+Licensed institutions participate through approved contracts and service accounts. They do not become sovereign validators simply by participating in the economic system.
 
----
+### Tier 2 — Open Interlinking Settlement
 
-## Where it stands
+Tier 2 connects sovereign economic domains with one another and with the public network without becoming a central bank or a pool of sovereign money.
 
-We would rather be plain about status than polished about it. Pyde is pre-mainnet. The architecture is designed, and the hard parts are built: the execution engine runs, the state layer is wired end to end, the developer toolchain and a one-command local devnet are shipped, and the native token standard works from start to finish. Consensus is live and being hardened under sustained, adversarial conditions.
+Anyone can operate a Tier 2 validator by participating in its staking and consensus system. Validators coordinate obligations and positions, publish aggregated foreign exchange observations, and reach quorum before state transitions that affect settlement coordination are accepted.
 
-What remains is the careful part. Proving the network holds up under real load, completing external security audits, and standing up the public infrastructure that lets anyone join. Mainnet ships when the work is complete, audited, and validated by an incentivized testnet. There is no public schedule, and we publish performance numbers only after a real multi-region harness has measured them, never lab estimates.
+Sovereign currencies remain inside their respective settlement pools. Tier 2 coordinates rights over those pools, executes cross domain settlement logic, and supports bilateral and multilateral netting so that only residual obligations require final settlement.
 
----
+### Tier 3 — Permissionless Public Network
+
+Tier 3 is the open environment for developers, users, and applications.
+
+Anyone can deploy contracts and interact with public state subject to the network's protocol rules. The same underlying protocol foundation supports this environment while its execution surface and authority model remain distinct from sovereign and interlinking networks.
+
+## One protocol foundation
+
+The three tiers share a common technical foundation while exposing different capabilities.
+
+The execution architecture uses Wasmtime with profile specific capabilities selected at compile time. A capability that does not belong in a sovereign execution profile is structurally absent from that binary rather than merely hidden behind a runtime permission flag.
+
+The state layer commits economic state cryptographically, and the execution model supports parallel transaction processing with deterministic validation. Cryptographic components include post quantum signatures such as FALCON-512, alongside the protocol's state and consensus mechanisms.
+
+This lets Pyde preserve a common protocol core without forcing sovereign, settlement, and permissionless environments into one authority model.
+
+## Where Pyde fits
+
+The architecture is designed around a simple boundary:
+
+**Sovereign networks own sovereign economic authority.  
+Tier 2 coordinates cross domain obligations and settlement.  
+Tier 3 provides permissionless public infrastructure.**
+
+Pyde does not require every participant to trust the same institution. Authority remains explicit at each layer, while the protocol provides the shared state model and settlement machinery needed for the systems to interact.
+
+The current public development environment is Tier 3. The broader architecture defines how sovereign and open settlement environments use the same protocol foundation while retaining their distinct authority and operating models.
 
 ## Explore
 
-- **[The Pyde Book](https://book.pyde.network)** is the full story and the complete technical reference, from how the chain works to how it launches. Source lives at [`pyde-book`](https://github.com/pyde-net/pyde-book).
-- **[Pyde Improvement Proposals](https://github.com/pyde-net/pips)** are where the protocol grows, one proposal at a time.
-
-Open source today: the book, the improvement proposals, the cryptography ([`pyde-crypto`](https://github.com/pyde-net/pyde-crypto) and its [browser build](https://github.com/pyde-net/pyde-crypto-wasm)), the contract interface ([`pyde-host`](https://github.com/pyde-net/pyde-host)), the [Rust](https://github.com/pyde-net/pyde-rust-sdk) and [TypeScript](https://github.com/pyde-net/pyde-ts-sdk) SDKs, the [contract templates](https://github.com/pyde-net/otigen-templates), and the signed [toolchain releases](https://github.com/pyde-net/test-releases).
-
-The engine, the `otigen` toolchain, the in-browser playground, the explorer, the faucet, and the website stay private during pre-mainnet engineering, and open as each stabilizes and security review allows. Access on request at [info@pyde.network](mailto:info@pyde.network).
-
----
+- **[Website](https://pyde.network)** — the architecture and the product overview.
+- **[Whitepaper](https://pyde.network/whitepaper.pdf)** — the full architectural and economic model.
+- **[Pyde Improvement Proposals](https://github.com/pyde-net/pips)** — the process for protocol level changes.
+- **[Technical Book](https://book.pyde.network)** — deeper protocol and implementation material.
 
 ## Community
 
-- [**Contributing**](https://github.com/pyde-net/.github/blob/main/CONTRIBUTING.md), how to propose changes, the PIP process, and engineering standards.
-- [**Security policy**](https://github.com/pyde-net/.github/blob/main/SECURITY.md), vulnerability disclosure, scope, and safe harbor.
-- [**Code of Conduct**](https://github.com/pyde-net/.github/blob/main/CODE_OF_CONDUCT.md), our community standards (Contributor Covenant 2.1).
-
-These apply across the org. Substantive protocol changes go through a Pyde Improvement Proposal in the [`pips`](https://github.com/pyde-net/pips) repo.
-
----
+- **[Contributing](https://github.com/pyde-net/.github/blob/main/CONTRIBUTING.md)** — contribution standards and the protocol change process.
+- **[Security policy](https://github.com/pyde-net/.github/blob/main/SECURITY.md)** — vulnerability disclosure, scope, and safe harbor.
+- **[Code of Conduct](https://github.com/pyde-net/.github/blob/main/CODE_OF_CONDUCT.md)** — community standards.
 
 ## Contact
 
 - **Website:** <https://pyde.network>
-- **Book:** <https://book.pyde.network>
 - **Email:** `info@pyde.network`
-- **X:** [`@pydenet`](https://x.com/pydenet)
-- **Telegram:** [`t.me/pydenet`](https://t.me/pydenet)
+- **X:** [@pydenet](https://x.com/pydenet)
+- **Telegram:** [t.me/pydenet](https://t.me/pydenet)
 - **Security disclosures:** `security@pyde.network`
-
----
 
 ## License
 
-Code is licensed under Apache-2.0 (per-repo `LICENSE` files). The book is licensed under CC BY-SA 4.0.
+Follow the license published in each repository. Repository specific terms take precedence over this organization profile.
