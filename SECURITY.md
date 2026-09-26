@@ -1,118 +1,82 @@
 # Security Policy
 
-Pyde is a Layer 1 blockchain in pre-mainnet development.
-This policy applies to every repo in the
-[pyde-net](https://github.com/pyde-net) org unless an individual repo
-overrides it with a more specific `SECURITY.md`.
+Pyde is infrastructure for global economic state. Its architecture spans three environments with different authority models: Tier 1 sovereign consortium networks, Tier 2 open interlinking settlement infrastructure, and Tier 3 a permissionless public network.
+
+This policy applies across the pyde-net organization unless an individual repository provides a more specific security policy.
 
 ## Reporting a vulnerability
 
 **Do not open a public issue for security vulnerabilities.**
 
-Email: **`security@pyde.network`** *(or until that's live: `info@pyde.network`,
-the project contact via README)*
+Email: **security@pyde.network**
 
-Please include:
+If that address is unavailable, contact **info@pyde.network**.
 
-- A description of the vulnerability
-- Steps to reproduce (or a proof-of-concept if you have one)
-- Which repo / commit / module is affected
-- Your assessment of the severity and impact
-- Whether the issue is exploitable in the current code or only after a
-  hypothetical future change
+Please include a description of the vulnerability, steps to reproduce or a proof of concept, the affected repository or component, your assessment of severity and impact, and whether the issue affects the current implementation, the documented architecture, or both.
 
-We will respond within **5 business days** acknowledging receipt. A
-full triage decision typically follows within 14 days.
+We will acknowledge valid reports as promptly as practical and keep the reporter informed during triage.
 
 ## Scope
 
-In scope:
+Security reports are relevant to:
 
-- All public code in `pyde-net` org repos
-- Cryptographic implementations in [`pyde-crypto`](https://github.com/pyde-net/pyde-crypto)
-- The WASM execution layer (post-pivot, to be re-cut in a fresh engine workspace; the pre-pivot reference is in [`archive`](https://github.com/pyde-net/archive))
-- The retired Otigen compiler in [`otic`](https://github.com/pyde-net/otic), a historical artifact, though logic bugs that could resurface post-pivot are still in scope
-- Wire-format / consensus / mempool design issues
-- Logic bugs in `pyde-book` companion specs that, if implemented as
-  documented, would create a vulnerability
+- Consensus and finality
+- Execution and contract interfaces
+- Account and state transition logic
+- Cryptographic implementations
+- Validator and staking logic
+- Authorization and tier boundaries
+- Cross domain settlement
+- FX data aggregation
+- Obligations, positions, and bilateral or multilateral netting
+- Networking, synchronization, and state recovery
+- SDKs and tooling where a flaw can compromise protocol or user security
 
-Out of scope:
-
-- The pre-pivot codebase in [`archive`](https://github.com/pyde-net/archive)
-  (archived, read-only, not part of the active project)
-- Third-party dependencies (report those upstream, and we'll happily help
-  with disclosure coordination, but the patch belongs there)
-- Issues in private/internal infrastructure (CI keys, secrets, etc.);
-  report directly via email regardless of "scope"
-- Social-engineering issues unrelated to protocol design
-- Issues that require a compromised wallet, browser, or operator
-  endpoint (i.e., classes that any chain has)
+A repository may define additional scope in its own security policy.
 
 ## Severity classification
 
-We use a standard four-level scale:
-
 | Severity | Examples |
 |---|---|
-| **Critical** | Funds theft, consensus break, double-spend, key extraction, signature forgery |
-| **High** | DoS that halts the chain or a validator, privilege escalation, MEV reintroduction |
-| **Medium** | Significant correctness bugs without funds-loss path, partial DoS |
-| **Low** | Edge-case correctness issues, hardening gaps, documentation issues with security implications |
+| **Critical** | Unauthorized asset or state transition, consensus failure, double spend, key compromise, signature forgery, or systemic settlement corruption |
+| **High** | Validator or network disruption, privilege escalation, authorization bypass, oracle manipulation with material settlement impact, or failure to enforce a tier boundary |
+| **Medium** | Significant correctness bugs, partial denial of service, isolated settlement errors, or security weaknesses requiring meaningful preconditions |
+| **Low** | Edge case correctness issues, hardening gaps, or documentation issues with security implications |
 
-## Disclosure timeline
+Severity is determined by impact, exploitability, affected scope, and the conditions required to trigger the issue.
 
-Standard responsible-disclosure with reasonable flexibility:
+## Coordinated disclosure
 
-- **Day 0:** Report received, acknowledged within 5 business days
-- **Day 14 to 90:** Triage, fix, internal review. We'll keep you updated
-- **Disclosure:** Coordinated public disclosure once a patch is released,
-  or after 90 days (whichever is sooner), unless we explicitly agree
-  on an extended embargo for serious issues
+Security issues are handled through responsible disclosure. Triage, remediation, testing, and disclosure timing depend on severity, affected components, exploit complexity, and whether coordination with external dependencies or ecosystem participants is required.
 
-We will credit you in the disclosure unless you prefer anonymity.
+The project may publish a security advisory after a fix is available and the disclosure process is complete. Researchers will be credited in public disclosures unless they prefer anonymity.
 
 ## Safe harbor
 
-We will not pursue legal action against good-faith security research
-that:
+We will not pursue legal action against good faith security research that follows this policy, avoids unnecessary access to private data, avoids destruction or disruption beyond what is required to demonstrate the issue, reports findings promptly, and stops testing once the issue is sufficiently demonstrated.
 
-- Complies with this policy
-- Avoids privacy violations, destruction of data, or service
-  interruption
-- Reports findings promptly via the channel above
-- Does not exploit a finding beyond what's needed to demonstrate it
+Good faith research does not include data exfiltration, denial of service against production systems, credential theft, social engineering, or activity unrelated to demonstrating the reported vulnerability.
+
+## Current protocol posture
+
+The current public development environment is Tier 3, the permissionless network.
+
+Tier 1 and Tier 2 define sovereign and interlinking environments that use the same protocol foundation with different authority and execution models. Their security boundaries are first class properties of the architecture.
+
+Architectural targets and measured production performance are treated separately. Performance claims that affect security assumptions, capacity planning, or economic guarantees are validated with reproducible benchmarks rather than assumptions.
+
+Independent security review and adversarial testing form part of production readiness for security critical components.
 
 ## Bug bounty
 
-A formal bug bounty program will launch with the incentivized testnet
-(Phase 9 of the [launch plan](https://book.pyde.network/chapters/19-launch-strategy)).
-Pre-mainnet vulnerability reports are not currently compensated
-financially but will be credited at the bounty program's launch, with
-priority consideration for retroactive recognition.
+This policy does not establish a standing bug bounty program. Any future bounty or paid security research program will define its eligible assets, reward structure, exclusions, and disclosure terms.
 
-## What pre-mainnet status means
+## Cryptographic implementation details
 
-Pyde is pre-launch. The codebase is being prepared for external audit
-across five specialist tracks (consensus, WASM execution layer, cryptography,
-networking, otigen toolchain) per
-[`pyde-book` Chapter 19](https://book.pyde.network/chapters/19-launch-strategy).
-Vulnerabilities found in the pre-audit code are valuable input to the
-audit, not a sign the audit has failed. We welcome them.
+Cryptographic algorithms, library versions, parameters, and implementation notes are maintained with the affected protocol component rather than fixed in this organization wide policy.
 
-Specifically, the multi-region performance harness build-out (specified in [`pyde-book` companion/PERFORMANCE_HARNESS.md](https://book.pyde.network/companion/PERFORMANCE_HARNESS)) is the gating prerequisite before benchmark numbers are published, and the work that surfaces it tends to surface vulnerability classes too.
-
-## Cryptographic primitive caveats
-
-One known constraint surfaces here, tracked for post-mainnet
-hardening:
-
-- `ml-kem` (Kyber-768, used for transport-layer encryption) is at
-  `0.3.0-rc.0` (NIST FIPS 203 release candidate); upgrading to the
-  stable release is on the post-mainnet checklist.
-
-Reports against this known constraint are appreciated as confirmation
-or expansion of impact, but the constraint itself is not novel.
+Security reports remain welcome for implementation defects and architectural weaknesses in the cryptographic design.
 
 ## License
 
-This security policy is licensed under CC0, so copy and adapt freely.
+This security policy is licensed under CC0, so it may be copied and adapted freely.
