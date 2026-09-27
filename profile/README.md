@@ -8,9 +8,6 @@
   <strong>Infrastructure for Global Economic State</strong>
 </p>
 
-<p align="center">
-  <em>Distributed ledger infrastructure for a connected global economy</em>
-</p>
 
 Pyde is distributed ledger technology for a connected global economy. It provides a common programmable foundation for representing and coordinating economic state across sovereign economic networks, open settlement infrastructure, and a permissionless public network.
 
