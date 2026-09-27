@@ -9,10 +9,10 @@
 </p>
 
 <p align="center">
-  <em>One protocol foundation across sovereign networks, open settlement, and permissionless infrastructure</em>
+  <em>Distributed ledger infrastructure for a connected global economy</em>
 </p>
 
-Pyde is a protocol architecture for representing and coordinating economic state across sovereign economic networks, open settlement infrastructure, and a permissionless public network.
+Pyde is distributed ledger technology for a connected global economy. It provides a common programmable foundation for representing and coordinating economic state across sovereign economic networks, open settlement infrastructure, and a permissionless public network.
 
 The core abstraction is **global economic state**. It is broader than tokenized assets. It includes balances, ownership, authorization, identity references, obligations, licenses, settlement positions, regulatory status, and the rules that govern how those states change.
 
@@ -38,17 +38,17 @@ Sovereign currencies remain inside their respective settlement pools. Tier 2 coo
 
 Tier 3 is the open environment for developers, users, and applications.
 
-Anyone can deploy contracts and interact with public state subject to the network's protocol rules. The same underlying protocol foundation supports this environment while its execution surface and authority model remain distinct from sovereign and interlinking networks.
+Anyone can deploy contracts and interact with public state subject to the network's protocol rules. The same underlying DLT foundation supports this environment while its execution surface and authority model remain distinct from sovereign and interlinking networks.
 
-## One protocol foundation
+## One DLT foundation
 
-The three tiers share a common technical foundation while exposing different capabilities.
+The three tiers share a common distributed ledger foundation while exposing different capabilities.
 
 The execution architecture uses Wasmtime with profile specific capabilities selected at compile time. A capability that does not belong in a sovereign execution profile is structurally absent from that binary rather than merely hidden behind a runtime permission flag.
 
 The state layer commits economic state cryptographically, and the execution model supports parallel transaction processing with deterministic validation. Cryptographic components include post quantum signatures such as FALCON-512, alongside the protocol's state and consensus mechanisms.
 
-This lets Pyde preserve a common protocol core without forcing sovereign, settlement, and permissionless environments into one authority model.
+This lets Pyde preserve a common DLT foundation without forcing sovereign, settlement, and permissionless environments into one authority model.
 
 ## Where Pyde fits
 
@@ -60,7 +60,7 @@ Tier 3 provides permissionless public infrastructure.**
 
 Pyde does not require every participant to trust the same institution. Authority remains explicit at each layer, while the protocol provides the shared state model and settlement machinery needed for the systems to interact.
 
-The current public development environment is Tier 3. The broader architecture defines how sovereign and open settlement environments use the same protocol foundation while retaining their distinct authority and operating models.
+The current public development environment is Tier 3. The broader architecture defines how sovereign and open settlement environments use the same DLT foundation while retaining their distinct authority and operating models.
 
 ## Explore
 
