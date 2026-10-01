@@ -9,7 +9,7 @@
 </p>
 
 
-Pyde is distributed ledger technology for a connected global economy. It provides a common programmable foundation for representing and coordinating economic state across sovereign economic networks, open settlement infrastructure, and a permissionless public network.
+Pyde is a distributed ledger technology for a connected global economy. It provides a common programmable foundation for representing and coordinating economic state across sovereign economic networks, open settlement infrastructure, and a permissionless public network.
 
 The core abstraction is **global economic state**. It is broader than tokenized assets. It includes balances, ownership, authorization, identity references, obligations, licenses, settlement positions, regulatory status, and the rules that govern how those states change.
 
